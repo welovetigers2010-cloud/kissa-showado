@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>喫茶 昭和堂 ── 珈琲の香り、昭和の時間。</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Maru+Gothic:wght@500;700&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f6efdd; --coffee:#2e1f12; --wood:#4a3520;
+  --red:#8e3b2f; --green:#3f5a45; --amber:#c98a3d;
+  --caramel:#d9a05b; --ink:#3a2a18;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:"Shippori Mincho","Noto Serif SC",serif;line-height:1.8;overflow-x:hidden}
+/* ============ 跑马灯 ============ */
+.ticker{background:var(--coffee);color:var(--caramel);overflow:hidden;white-space:nowrap;font-family:"Zen Maru Gothic",sans-serif;font-size:.8rem;letter-spacing:.2em;padding:.45em 0;border-bottom:1px solid #000}
+.ticker span{display:inline-block;padding-left:100%;animation:mar 28s linear infinite}
+@keyframes mar{to{transform:translateX(-100%)}}
+/* ============ 导航 ============ */
+header{position:sticky;top:0;z-index:99;background:linear-gradient(#3a2917,#2e1f12);border-bottom:3px double var(--caramel);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.nav{max-width:1080px;margin:0 auto;padding:.9rem 1.2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{color:var(--cream);font-weight:800;font-size:1.25rem;letter-spacing:.15em;display:flex;align-items:center;gap:.6em}
+.logo .cup{font-size:1.5rem;filter:drop-shadow(0 0 6px rgba(217,160,91,.6))}
+.logo small{display:block;font-size:.62rem;letter-spacing:.45em;color:var(--caramel);font-weight:500}
+nav a{color:#d8c7a8;text-decoration:none;font-size:.85rem;letter-spacing:.25em;margin-left:1.6rem;padding-bottom:2px;border-bottom:1px solid transparent;transition:.3s}
+nav a:hover{color:var(--caramel);border-color:var(--caramel)}
+@media(max-width:640px){nav a{margin-left:.9rem;font-size:.75rem;letter-spacing:.1em}}
+/* ============ HERO ============ */
+.hero{position:relative;min-height:78vh;display:grid;place-items:center;text-align:center;background:url('./images/interior.jpg') center/cover no-repeat #241809}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%, rgba(201,138,61,.18), transparent 55%),linear-gradient(rgba(24,14,5,.55), rgba(24,14,5,.82))}
+.hero-inner{position:relative;z-index:2;padding:5rem 1.2rem}
+.badge-open{display:inline-flex;align-items:center;gap:.5em;border:1px solid var(--caramel);color:var(--caramel);font-size:.75rem;letter-spacing:.5em;text-indent:.5em;padding:.45em 1.4em;border-radius:99px;margin-bottom:2rem;background:rgba(46,31,18,.55);backdrop-filter:blur(2px)}
+.badge-open i{width:8px;height:8px;border-radius:50%;background:#7fce6e;box-shadow:0 0 8px #7fce6e;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hero h1{color:var(--cream);font-size:clamp(2rem,6vw,3.6rem);letter-spacing:.12em;font-weight:800;text-shadow:0 3px 18px rgba(0,0,0,.7)}
+.hero h1 .ac{color:var(--caramel)}
+.hero p{color:#cdb894;margin-top:1.2rem;font-size:clamp(.85rem,2.4vw,1.05rem);letter-spacing:.35em}
+.hero .since{margin-top:2.6rem;color:#a98f68;font-size:.78rem;letter-spacing:.4em}
+.since::before,.since::after{content:" ✦ ";color:var(--amber)}
+.scroll-cue{position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);z-index:2;color:#b59a72;font-size:.7rem;letter-spacing:.4em;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+/* ============ 格纹装饰带 ============ */
+.checker{height:26px;background:repeating-conic-gradient(var(--red) 0 25%, #f3e9d2 0 50%) 0 0/26px 26px;border-top:2px solid var(--coffee);border-bottom:2px solid var(--coffee)}
+/* ============ 通用板块 ============ */
+section{max-width:1080px;margin:0 auto;padding:5rem 1.2rem}
+.sec-head{text-align:center;margin-bottom:3.2rem}
+.sec-head .jp{display:inline-block;color:var(--red);font-size:.72rem;letter-spacing:.6em;text-indent:.6em;border-top:1px solid var(--red);border-bottom:1px solid var(--red);padding:.35em 1.2em;margin-bottom:1.1rem}
+.sec-head h2{font-size:clamp(1.5rem,4vw,2.2rem);letter-spacing:.2em;color:var(--coffee)}
+.sec-head p{margin-top:.7rem;color:#8a755a;font-size:.9rem;letter-spacing:.2em}
+/* ============ 三理念 ============ */
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+@media(max-width:720px){.values{grid-template-columns:1fr}}
+.value{background:#fffaf0;border:1px solid #e2d4b4;border-radius:6px;padding:2.4rem 1.6rem;text-align:center;position:relative;box-shadow:0 10px 24px rgba(74,53,32,.10);transition:transform .35s, box-shadow .35s}
+.value:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(74,53,32,.18)}
+.value .icon{width:64px;height:64px;margin:0 auto 1.2rem;border-radius:50%;display:grid;place-items:center;font-size:1.7rem;background:radial-gradient(circle at 35% 30%, #f0dfbc, #dfc294);border:2px solid var(--amber);box-shadow:inset 0 0 0 4px #fff8ea}
+.value h3{color:var(--coffee);letter-spacing:.15em;font-size:1.1rem;margin-bottom:.6rem}
+.value h3 small{display:block;font-size:.68rem;color:var(--amber);letter-spacing:.35em;margin-top:.2rem}
+.value p{font-size:.86rem;color:#6f5b41}
+/* ============ 菜单区 ============ */
+.menu-wrap{background:#fbf6e9;border:1px solid #dccfae;border-radius:8px;padding:2.6rem clamp(1rem,4vw,2.6rem);position:relative;box-shadow:0 14px 40px rgba(74,53,32,.14)}
+.menu-wrap::before{content:"お品書き";position:absolute;top:-1rem;left:50%;transform:translateX(-50%);background:var(--red);color:#f6efdd;letter-spacing:.5em;text-indent:.5em;font-size:.75rem;padding:.4em 1.6em;border-radius:99px;box-shadow:0 4px 10px rgba(142,59,47,.4)}
+.feature{display:grid;grid-template-columns:1.05fr 1fr;gap:2rem;align-items:center;margin-bottom:2.8rem}
+@media(max-width:760px){.feature{grid-template-columns:1fr}}
+.photo-frame{position:relative;border-radius:6px;overflow:hidden;border:6px solid #fff;outline:1px solid #d9c69d;box-shadow:0 16px 38px rgba(46,31,18,.28);background:radial-gradient(circle at 30% 25%, #5d4326, #2e1f12)}
+.photo-frame img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;transition:transform .8s ease;position:relative;z-index:2}
+.photo-frame:hover img{transform:scale(1.06)}
+.photo-frame .fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:4.5rem;background:radial-gradient(circle at 70% 20%, rgba(217,160,91,.35), transparent 50%),linear-gradient(135deg,#4a3520,#2e1f12)}
+.fallback span{filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
+.fallback .no{position:absolute;bottom:.6rem;right:.9rem;font-size:.65rem;letter-spacing:.3em;color:#b59a72}
+.feature-txt .tag{display:inline-block;background:var(--green);color:#eee7d2;font-size:.7rem;letter-spacing:.35em;text-indent:.35em;padding:.4em 1.1em;border-radius:99px;margin-bottom:1rem}
+.feature-txt h3{font-size:clamp(1.4rem,3.5vw,1.9rem);color:var(--coffee);letter-spacing:.12em}
+.feature-txt .kana{color:var(--amber);font-size:.8rem;letter-spacing:.45em;margin:.3rem 0 1.1rem}
+.feature-txt p{font-size:.92rem;color:#6f5b41}
+.price-line{margin-top:1.4rem;display:flex;align-items:baseline;gap:.7rem;border-top:1px dashed #c9b489;padding-top:1.1rem}
+.price-line .yen{font-size:1.9rem;font-weight:800;color:var(--red)}
+.price-line .note{font-size:.72rem;color:#9c8663;letter-spacing:.2em}
+/* 菜单网格 */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.grid{grid-template-columns:1fr}}
+.card{background:#fffaf0;border:1px solid #e2d4b4;border-radius:6px;overflow:hidden;box-shadow:0 8px 20px rgba(74,53,32,.10);transition:transform .35s, box-shadow .35s}
+.card:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(74,53,32,.18)}
+.card .ph{position:relative;overflow:hidden}
+.card .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .8s ease;position:relative;z-index:2}
+.card:hover .ph img{transform:scale(1.07)}
+.card .ph .fallback{position:absolute;inset:0;display:grid;place-items:center;font-size:3.2rem;background:radial-gradient(circle at 65% 25%, rgba(217,160,91,.35), transparent 55%),linear-gradient(135deg,#4a3520,#2e1f12)}
+.card .ph .fallback em{position:absolute;bottom:.5rem;right:.7rem;font-style:normal;font-size:.6rem;letter-spacing:.3em;color:#b59a72}
+.card .body{padding:1.2rem 1.2rem 1.4rem;text-align:center}
+.card h4{color:var(--coffee);letter-spacing:.14em;font-size:1.05rem}
+.card .sub{font-size:.68rem;color:var(--amber);letter-spacing:.35em;margin:.15rem 0 .55rem}
+.card p{font-size:.8rem;color:#7a6549;min-height:3.2em}
+.card .price{margin-top:.8rem;font-weight:800;color:var(--red);font-size:1.15rem}
+.tategaki{position:absolute;top:3rem;right:1rem;writing-mode:vertical-rl;color:#c9b489;font-size:.72rem;letter-spacing:.5em}
+@media(max-width:760px){.tategaki{display:none}}
+/* ============ 店内案内 ============ */
+#shop .cols{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;align-items:start}
+@media(max-width:760px){#shop .cols{grid-template-columns:1fr}}
+.info-card{background:var(--coffee);color:#e8dcc2;border-radius:8px;padding:2.2rem 1.8rem;box-shadow:0 14px 34px rgba(46,31,18,.35);background-image:radial-gradient(rgba(201,138,61,.08) 1px, transparent 1px);background-size:14px 14px}
+.info-card h3{color:var(--caramel);letter-spacing:.3em;font-size:1.05rem;margin-bottom:1.3rem;display:flex;align-items:center;gap:.6em}
+.info-card table{width:100%;border-collapse:collapse;font-size:.9rem}
+.info-card td{padding:.55em 0;border-bottom:1px dashed #55432b}
+.info-card td:last-child{text-align:right;color:var(--caramel)}
+.info-card .addr{margin-top:1.3rem;font-size:.88rem;line-height:2}
+.info-card .addr b{color:var(--caramel)}
+.rule{margin-top:1.3rem;font-size:.78rem;color:#b7a37e;border-top:1px solid #55432b;padding-top:1rem;letter-spacing:.1em}
+.rule::before{content:"※ "}
+.story{font-size:.94rem;color:#5d4a33}
+.story .lead{font-size:1.15rem;color:var(--coffee);letter-spacing:.1em;margin-bottom:1.2rem;font-weight:700}
+.story p{margin-bottom:1em}
+.story .sig{text-align:right;color:var(--red);letter-spacing:.3em;font-size:.85rem;margin-top:1.6rem}
+/* ============ Footer ============ */
+footer{background:linear-gradient(#241809,#1a1005);color:#9c8663;text-align:center;padding:3rem 1.2rem 2.2rem;letter-spacing:.25em;font-size:.8rem;border-top:3px double var(--caramel)}
+footer .flogo{color:var(--cream);font-size:1.2rem;font-weight:800;letter-spacing:.3em;margin-bottom:.8rem}
+footer .flogo span{color:var(--caramel)}
+footer .small{font-size:.68rem;margin-top:1.4rem;color:#6b5a42;letter-spacing:.2em}
+/* ============ 进场动画 ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease, transform .9s ease}
+.reveal.on{opacity:1;transform:none}
+/* ============ 黑胶唱片机 BGM ============ */
+.vinyl-btn{position:fixed;right:1.4rem;bottom:1.4rem;z-index:120;width:74px;height:74px;border:none;background:none;cursor:pointer}
+.vinyl-btn:focus-visible{outline:2px dashed var(--amber);outline-offset:4px;border-radius:50%}
+.disc{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 50%, #8e3b2f 0 18%, transparent 18.5%),repeating-radial-gradient(circle at 50% 50%, #1a120a 0 2px, #2b2014 2px 4px);box-shadow:0 6px 18px rgba(0,0,0,.4), inset 0 0 0 2px #3a2a18;animation:spin 3s linear infinite;animation-play-state:paused}
+.vinyl-btn.playing .disc{animation-play-state:running}
+.disc::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;transform:translate(-50%,-50%);border-radius:50%;background:#f6efdd}
+@keyframes spin{to{transform:rotate(360deg)}}
+.vinyl-btn .arm{position:absolute;width:5px;height:30px;background:linear-gradient(#c9b489,#8a755a);right:4px;top:0;border-radius:3px;transform-origin:bottom center;transform:rotate(-20deg);transition:transform .5s;box-shadow:0 2px 4px rgba(0,0,0,.3)}
+.vinyl-btn.playing .arm{transform:rotate(12deg)}
+.vinyl-tip{position:fixed;right:1.4rem;bottom:calc(1.4rem + 84px);z-index:120;background:rgba(46,31,18,.92);color:#e8dcc2;font-size:.68rem;letter-spacing:.2em;padding:.35em .9em;border-radius:99px;border:1px solid #55432b;pointer-events:none;font-family:"Zen Maru Gothic",sans-serif;white-space:nowrap}
+</style>
+</head>
+<body>
+
+<!-- 跑马灯 -->
+<div class="ticker"><span>☕ 本日も営業中 ── 昭和五十一年創業 ── 虹吸壶现煮 · 手作甜点 · 一杯的时间，慢慢来 ── 冰奶油苏打还有最后几杯 ── 欢迎光临 ──</span></div>
+
+<!-- 导航 -->
+<header>
+  <div class="nav">
+    <div class="logo">
+      <span class="cup">☕</span>
+      <span>喫茶 昭和堂<small>KISSASHŌWADŌ · since 1976</small></span>
+    </div>
+    <nav>
+      <a href="#values">こだわり</a>
+      <a href="#menu">お品書き</a>
+      <a href="#shop">店内案内</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="max-width:none;padding:0">
+  <div class="hero-inner">
+    <div class="badge-open"><i></i>OPEN ・ 11:00 ─ 21:00</div>
+    <h1>珈琲の<span class="ac">香り</span>、<br>昭和の<span class="ac">時間</span>。</h1>
+    <p>一杯的咖啡，慢慢煮；一段的时光，慢慢过。</p>
+    <div class="since">創業昭和五十一年 ── 長屋街角的紅茶與珈琲</div>
+  </div>
+  <div class="scroll-cue">SCROLL ▼</div>
+</section>
+
+<div class="checker"></div>
+
+<!-- 三理念 -->
+<section id="values">
+  <div class="sec-head reveal">
+    <span class="jp">こだわり</span>
+    <h2>三样小小的坚持</h2>
+    <p>─ 四十年来，我们只认真做好这三件事 ─</p>
+  </div>
+  <div class="values">
+    <div class="value reveal">
+      <div class="icon">🔥</div>
+      <h3>虹吸壶现煮<small>SIPHON COFFEE</small></h3>
+      <p>酒精灯的蓝色小火，玻璃球里咕嘟作响。深煎豆现磨现煮，苦味之后，回甘很长。</p>
+    </div>
+    <div class="value reveal">
+      <div class="icon">🍮</div>
+      <h3>当日手作甜点<small>HANDMADE SWEETS</small></h3>
+      <p>布丁每天清晨手工烤制，焦糖熬到恰好的微苦。卖完即止，是老板娘的任性与骄傲。</p>
+    </div>
+    <div class="value reveal">
+      <div class="icon">🕰️</div>
+      <h3>时间慢一点<small>TAKE YOUR TIME</small></h3>
+      <p>黑胶唱片转一整个下午。看窗、看书、发呆都可以，请务必慢慢地、慢慢地待着。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 菜单 -->
+<section id="menu">
+  <div class="sec-head reveal">
+    <span class="jp">お品書き</span>
+    <h2>今日的甜品柜</h2>
+    <p>─ 相片里的每一款，都摆在吧台玻璃柜中等您 ─</p>
+  </div>
+  <div class="menu-wrap reveal">
+    <div class="tategaki">珈琲と甘いものは、正義。</div>
+
+    <div class="feature">
+      <div class="photo-frame">
+        <div class="fallback"><span>🍮</span><em>KISSA SHŌWADŌ</em></div>
+        <img src="./images/purin.jpg" alt="特製焦糖布丁" onerror="this.style.display='none'">
+      </div>
+      <div class="feature-txt">
+        <span class="tag">今月の看板 ─ NO.1</span>
+        <h3>特製焦糖布丁</h3>
+        <div class="kana">とくせい プリン / TOKUSEI PURIN</div>
+        <p>玻璃碟里轻轻晃动的昭和定番。蛋香浓郁的布丁体，淋上微苦手熬焦糖，冷藏到恰到好处的凉。配一壶深煎更好，苦与甜在舌尖和解。</p>
+        <div class="price-line"><span class="yen">¥480</span><span class="note">数量限定 ・ 售完即止</span></div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card reveal">
+        <div class="ph">
+          <div class="fallback"><span>🍓</span><em>NO.2</em></div>
+          <img src="./images/parfait.jpg" alt="草莓巴菲" onerror="this.style.display='none'">
+        </div>
+        <div class="body">
+          <h4>草莓巴菲</h4>
+          <div class="sub">イチゴパフェ</div>
+          <p>奶油、草莓酱与冰淇淋，一层一层堆出少女心。银勺要长，才够得到杯底。</p>
+          <div class="price">¥950</div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="ph">
+          <div class="fallback"><span>🥤</span><em>NO.3</em></div>
+          <img src="./images/soda.jpg" alt="奶油苏打" onerror="this.style.display='none'">
+        </div>
+        <div class="body">
+          <h4>奶油苏打</h4>
+          <div class="sub">クリームソーダ</div>
+          <p>哈密瓜汽水浮一颗香草冰淇淋，顶上必有一颗红樱桃。昭和少年心中的白月光。</p>
+          <div class="price">¥620</div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="ph">
+          <div class="fallback"><span>🥪</span><em>NO.4</em></div>
+          <img src="./images/fruitsando.jpg" alt="水果三明治" onerror="this.style.display='none'">
+        </div>
+        <div class="body">
+          <h4>水果三明治</h4>
+          <div class="sub">フルーツサンド</div>
+          <p>松软吐司夹满奶油与当季水果，切口就是一幅画。只做午前限定十份。</p>
+          <div class="price">¥880</div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="ph">
+          <div class="fallback"><span>🥞</span><em>KITCHEN</em></div>
+          <img src="./images/hotcake.jpg" alt="厚松饼" onerror="this.style.display='none'">
+        </div>
+        <div class="body">
+          <h4>厚烧松饼</h4>
+          <div class="sub">ホットケーキ</div>
+          <p>铜锅慢慢煎出焦边，黄油在顶上融化，枫糖浆请自己浇，浇到心满意足。</p>
+          <div class="price">¥750</div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="ph">
+          <div class="fallback"><span>☕</span><em>COUNTER</em></div>
+          <img src="./images/coffee.jpg" alt="虹吸深煎咖啡" onerror="this.style.display='none'">
+        </div>
+        <div class="body">
+          <h4>昭和堂 blends</h4>
+          <div class="sub">ブレンド珈琲</div>
+          <p>深煎三豆配方，酒精灯虹吸现煮。瓷杯先烫过，苦味圆润，烟熏香收尾。</p>
+          <div class="price">¥500</div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="ph">
+          <div class="fallback"><span>🥛</span><em>DRINK</em></div>
+          <img src="./images/milk.jpg" alt="冰淇淋牛奶" onerror="this.style.display='none'">
+        </div>
+        <div class="body">
+          <h4>冰淇淋牛奶</h4>
+          <div class="sub">アイスミルク</div>
+          <p>玻璃杯里两球香草冰淇淋，滚烫的牛奶从头顶浇下。冷与热，各自安好。</p>
+          <div class="price">¥450</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<!-- 店内案内 -->
+<section id="shop">
+  <div class="sec-head reveal">
+    <span class="jp">店内案内</span>
+    <h2>推开门，就是昭和</h2>
+    <p>─ 红色丝绒卡座、黄铜虹吸壶、永远慢半拍的吊扇 ─</p>
+  </div>
+  <div class="cols">
+    <div class="story reveal">
+      <p class="lead">「欢迎光临──」<br>木门上的铜铃，四十年来都是这个声音。</p>
+      <p>一九七六年，祖父在这条商店街的转角支起六张桌子。如今吊扇还是那台吊扇，唱片还是那些唱片，糖罐里的方糖永远补满。</p>
+      <p>我们不追赶潮流。这里只提供热珈琲、凉夜风、和一段可以放心浪费的时间。手机没电了？正好，请看看窗外。</p>
+      <p class="sig">── 三代目 店主 敬上</p>
+    </div>
+    <div class="info-card reveal">
+      <h3>☕ 営業案内</h3>
+      <table>
+        <tr><td>営業時間</td><td>11:00 ─ 21:00</td></tr>
+        <tr><td>ラストオーダー</td><td>20:30</td></tr>
+        <tr><td>定休日</td><td>火曜日（周二）</td></tr>
+        <tr><td>座席</td><td>テーブル 6席 ／ カウンター 5席</td></tr>
+        <tr><td>喫煙</td><td>全席禁煙</td></tr>
+      </table>
+      <div class="addr">
+        <b>〒154-0024</b><br>
+        東京都世田谷区三軒茶屋 2-14-9<br>
+        長屋商店街 角の茶色い建物
+      </div>
+      <div class="rule">お一人様ワンオーダー制（每位请点一份）／ 現金払い歓迎</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">☕ 喫茶 <span>昭和堂</span> ── since 1976</div>
+  <div>珈琲の香り、昭和の時間。／ 本日の珈琲、もう一杯いかがですか。</div>
+  <div class="small">© 1976─ SHOWA-DO COFFEE ・ このページはフィクションです（梦幻店铺，不设地址）</div>
+</footer>
+
+<!-- 黑胶唱片机 BGM -->
+<div class="vinyl-tip" id="vinyl-tip">点我放音乐 ♪</div>
+<button class="vinyl-btn" id="vinyl" aria-label="播放或暂停BGM">
+  <div class="disc"></div>
+  <div class="arm"></div>
+</button>
+
+<script>
+// 滚动淡入
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ========== 黑胶唱片机 BGM ========== */
+/* 优先播放 audio/bgm.mp3（如果放了真歌）；否则用 Web Audio 现场演奏喫茶店爵士 */
+const Disc = (()=>{
+  const btn = document.getElementById('vinyl');
+  const tip = document.getElementById('vinyl-tip');
+  let ctx=null, master=null, noiseBuf=null;
+  let playing=false, timer=null, step=0, nextT=0;
+  let audioEl=null, useFile=false;
+
+  // 尝试加载本地音乐文件（可选）
+  try{
+    audioEl = new Audio('audio/bgm.mp3');
+    audioEl.loop = true; audioEl.volume = 0.55; audioEl.preload = 'auto';
+    audioEl.addEventListener('canplaythrough', ()=>{ useFile = true; });
+    audioEl.addEventListener('error', ()=>{ useFile = false; });
+  }catch(e){ audioEl = null; }
+
+  const bpm = 76, beat = 60/bpm, eighth = beat/2, STEPS = 32; // 4小节循环
+  // 和弦进行：Fmaj7 → Em7 → Dm7 → Cmaj7（温暖的喫茶店味道）
+  const chords = [[53,57,60,64],[52,55,59,62],[50,53,57,60],[48,52,55,59]];
+  const bassRoot = [41,40,38,36];
+  const melodyPool = [[65,69,72,76],[64,67,71,74],[62,65,69,72],[60,64,67,71]];
+
+  function init(){
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = 0.9;
+    const comp = ctx.createDynamicsCompressor();
+    master.connect(comp); comp.connect(ctx.destination);
+    noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+    const d = noiseBuf.getChannelData(0);
+    for(let i=0;i<d.length;i++) d[i] = Math.random()*2-1;
+  }
+  const mtof = m => 440*Math.pow(2,(m-69)/12);
+
+  // 电钢琴音色（柔和的钟铃感）
+  function ep(t,m,vel){
+    const f = mtof(m);
+    const o1=ctx.createOscillator(), o2=ctx.createOscillator();
+    o1.type='sine'; o1.frequency.value=f;
+    o2.type='triangle'; o2.frequency.value=f*2.002;
+    const g=ctx.createGain(), g2=ctx.createGain(), lp=ctx.createBiquadFilter();
+    g2.gain.value=0.3; lp.type='lowpass'; lp.frequency.value=1600;
+    o1.connect(g); o2.connect(g2); g2.connect(g); g.connect(lp); lp.connect(master);
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(vel,t+0.025);
+    g.gain.exponentialRampToValueAtTime(Math.max(vel*0.2,0.001), t+1.4);
+    g.gain.linearRampToValueAtTime(0.0001, t+2.0);
+    o1.start(t); o2.start(t); o1.stop(t+2.1); o2.stop(t+2.1);
+  }
+  // 低音提琴
+  function bass(t,m,vel=0.16,dur=0.8){
+    const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=mtof(m);
+    const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=320;
+    const g=ctx.createGain();
+    o.connect(lp); lp.connect(g); g.connect(master);
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(vel,t+0.02);
+    g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+    o.start(t); o.stop(t+dur+0.1);
+  }
+  function noiseHit(t,dur,type,freq,vel,q=1){
+    const s=ctx.createBufferSource(); s.buffer=noiseBuf;
+    const f=ctx.createBiquadFilter(); f.type=type; f.frequency.value=freq; f.Q.value=q;
+    const g=ctx.createGain();
+    s.connect(f); f.connect(g); g.connect(master);
+    g.gain.setValueAtTime(vel,t);
+    g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+    s.start(t); s.stop(t+dur+0.02);
+  }
+  const hat   = (t,v)=>noiseHit(t,0.06,'highpass',7500,v);
+  const brush = (t,v)=>noiseHit(t,0.28,'bandpass',1900,v,0.7);
+  const click = ()=>noiseHit(ctx.currentTime+0.01,0.012,'highpass',3200,0.02+Math.random()*0.04); // 黑胶炒豆声
+  function kick(t){
+    const o=ctx.createOscillator(); o.type='sine';
+    o.frequency.setValueAtTime(105,t);
+    o.frequency.exponentialRampToValueAtTime(43,t+0.12);
+    const g=ctx.createGain(); o.connect(g); g.connect(master);
+    g.gain.setValueAtTime(0.22,t);
+    g.gain.exponentialRampToValueAtTime(0.001,t+0.22);
+    o.start(t); o.stop(t+0.25);
+  }
+
+  function scheduleStep(s,t){
+    const bar = Math.floor(s/8), e = s%8;
+    const ch = chords[bar];
+    if(e===0){                       // 小节头：和弦 + 根音 + 底鼓
+      ch.forEach(m=>ep(t, m, 0.075));
+      bass(t, bassRoot[bar]);
+      kick(t);
+    }
+    if(e===4) bass(t, bassRoot[bar]+7, 0.13, 0.6);              // 五音
+    if(e===6) bass(t, bassRoot[(bar+1)%4]-1, 0.12, 0.45);       // 走向低音（半音靠近下一个根音）
+    if(e===2||e===6) brush(t, 0.05);                            // 二、四拍刷鼓
+    hat(t, e%2===0 ? 0.045 : 0.028);                            // 摇摆八分音符
+    if(Math.random()<0.06) click();                             // 偶尔的黑胶杂音
+    if((e===2||e===5||e===7)&&Math.random()<0.22){              // 随手弹两句小旋律
+      const pool = melodyPool[bar];
+      ep(t, pool[Math.floor(Math.random()*pool.length)]+12, 0.05);
+    }
+  }
+  function scheduler(){
+    while(nextT < ctx.currentTime + 0.35){
+      scheduleStep(step, nextT);
+      nextT += eighth;
+      step = (step+1)%STEPS;
+    }
+    timer = setTimeout(scheduler, 120);
+  }
+  function start(){
+    if(useFile && audioEl){ audioEl.play().catch(()=>{}); }
+    else{
+      if(!ctx) init();
+      ctx.resume();
+      step=0; nextT=ctx.currentTime+0.1;
+      scheduler();
+    }
+    playing = true;
+    btn.classList.add('playing');
+    tip.textContent = 'BGM 播放中 ♪';
+  }
+  function stop(){
+    if(audioEl) audioEl.pause();
+    if(timer){ clearTimeout(timer); timer=null; }
+    playing = false;
+    btn.classList.remove('playing');
+    tip.textContent = '点我放音乐 ♪';
+  }
+  btn.addEventListener('click', ()=> playing ? stop() : start());
+})();
+</script>
+</body>
+</html>
